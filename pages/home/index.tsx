@@ -1,19 +1,46 @@
 import React, { useState } from "react";
-import { Button, Card, VStack } from "native-base";
-import { StyleSheet } from 'react-native'
+import { Button, Card, HStack, VStack } from "native-base";
 import PresseableCard from "../../components/presseableCard";
+import { View, Text, Image, StyleSheet } from 'react-native';
+import Swiper from 'react-native-swiper';
+
 
 
 const HomeScreen = ({ navigation }) => {
 
+    const data = [
+        { text: 'Gafa 1', image: require('../../public/imagenes/gafas1.jpeg') },
+        { text: 'Gafa 2', image: require('../../public/imagenes/gafas2.jpeg') },
+        { text: 'Gafa 3', image: require('../../public/imagenes/gafas3.jpeg') },
+    ];
+
+    const swiperOptions = {
+        autoplay: true,
+        autoplayTimeout: 3000,
+    };
+
+    const renderCarouselItem = (item, index) => (
+        
+          <View style={styles.carouselItem}>
+          <Image source={item.image} style={styles.image} />
+          </View>
+        
+      );
 
     return <VStack space={4} alignItems="center">
 
+
+            
+        <HStack>
+            {data.map((item, index) => renderCarouselItem(item, index))}
+        </HStack>
         
         <PresseableCard title="Registrar Actividad" srcImage=""
             onPress={() => navigation.navigate('Register')} />
         <PresseableCard title="Mis Actividades" srcImage=""
             onPress={() => navigation.navigate('Register')} />
+            
+        
     </VStack>
 }
 
@@ -42,6 +69,26 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "700",
         color: 'white'
-    }
+    },
+    wrapper: {
+        minHeight: 200,
+        marginTop:30
+      },
+      carouselItem: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 50
+      },
+      image: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+        marginBottom: 10,
+      },
+      text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
 });
 export default HomeScreen;

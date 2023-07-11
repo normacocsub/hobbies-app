@@ -2,38 +2,23 @@ import React, { useState } from "react";
 import { Button, Card, HStack, VStack } from "native-base";
 import PresseableCard from "../../components/presseableCard";
 import { View, Text, Image, StyleSheet } from 'react-native';
-import Swiper from 'react-native-swiper';
+import Carousel from "../../components/carousel";
 
 
 
 const HomeScreen = ({ navigation }) => {
 
-    const data = [
-        { text: 'Gafa 1', image: require('../../public/imagenes/gafas1.jpeg') },
-        { text: 'Gafa 2', image: require('../../public/imagenes/gafas2.jpeg') },
-        { text: 'Gafa 3', image: require('../../public/imagenes/gafas3.jpeg') },
-    ];
+    
 
-    const swiperOptions = {
-        autoplay: true,
-        autoplayTimeout: 3000,
-    };
+    
 
-    const renderCarouselItem = (item, index) => (
-        
-          <View style={styles.carouselItem}>
-          <Image source={item.image} style={styles.image} />
-          </View>
-        
-      );
+    
 
     return <VStack space={4} alignItems="center">
 
 
             
-        <HStack>
-            {data.map((item, index) => renderCarouselItem(item, index))}
-        </HStack>
+        <Carousel />
         
         <PresseableCard title="Registrar Actividad" srcImage=""
             onPress={() => navigation.navigate('Register')} />
